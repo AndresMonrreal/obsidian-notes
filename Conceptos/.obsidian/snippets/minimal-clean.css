@@ -1,0 +1,119 @@
+/* ============================================================
+   Minimal-Clean · snippet de estilo
+   Vault de ciberseguridad — limpio, sobrio, legible
+   Actívalo en: Settings → Appearance → CSS snippets
+   Funciona sobre cualquier tema; pensado para Minimal/Default.
+   ============================================================ */
+
+/* ---- 1. Ancho de lectura cómodo -------------------------- */
+/* Un poco más de aire para comandos y tablas largas */
+.markdown-source-view.mod-cm6 .cm-content,
+.markdown-preview-view {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---- 2. Tipografía y ritmo ------------------------------- */
+.markdown-preview-view,
+.markdown-source-view.mod-cm6 .cm-content {
+  line-height: 1.7;               /* más respiración entre líneas */
+  letter-spacing: 0.1px;
+}
+
+/* Jerarquía de encabezados clara pero discreta */
+.markdown-preview-view h1,
+.cm-header-1 { font-weight: 700; letter-spacing: -0.3px; }
+.markdown-preview-view h2,
+.cm-header-2 {
+  padding-bottom: 0.2em;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+/* ---- 3. Tags tipo "pill" discretos ----------------------- */
+.tag {
+  background-color: var(--background-modifier-hover);
+  color: var(--text-accent);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 999px;
+  padding: 1px 9px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-decoration: none !important;
+}
+.tag:hover {
+  background-color: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border-color: transparent;
+}
+
+/* ---- 4. Bloques de código sobrios ------------------------ */
+.markdown-preview-view pre,
+.markdown-source-view .HyperMD-codeblock-bg {
+  border-radius: 10px;
+  border: 1px solid var(--background-modifier-border);
+}
+.markdown-preview-view pre {
+  padding: 14px 16px;
+  background: var(--background-secondary);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+/* Código inline suave */
+:not(pre) > code {
+  background: var(--background-modifier-hover);
+  border-radius: 5px;
+  padding: 0.1em 0.4em;
+  font-size: 0.88em;
+}
+
+/* ---- 5. Callouts elegantes ------------------------------- */
+/* Uso sugerido en tus notas:
+   > [!info]     para conceptos/definiciones
+   > [!command]  para bloques de comandos clave
+   > [!warning]  para notas de seguridad / cuidado
+*/
+.callout {
+  border-radius: 10px;
+  border: 1px solid var(--background-modifier-border);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  padding: 4px 6px;
+}
+/* Callout personalizado "command" (verde discreto) */
+.callout[data-callout="command"] {
+  --callout-color: 46, 160, 67;
+  --callout-icon: lucide-terminal;
+}
+
+/* ---- 6. Detalles finos ----------------------------------- */
+/* Enlaces internos sin subrayado agresivo */
+.cm-hmd-internal-link,
+.internal-link { text-decoration: none; }
+.internal-link:hover { text-decoration: underline; }
+
+/* Líneas horizontales más suaves */
+hr {
+  border: none;
+  border-top: 1px solid var(--background-modifier-border);
+  margin: 1.6em 0;
+}
+
+/* Tablas con separación limpia */
+.markdown-preview-view table {
+  border-collapse: collapse;
+}
+.markdown-preview-view th,
+.markdown-preview-view td {
+  border: 1px solid var(--background-modifier-border);
+  padding: 6px 10px;
+}
+.markdown-preview-view thead th {
+  background: var(--background-secondary);
+  font-weight: 600;
+}
+
+/* Scrollbar más fina y discreta */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: var(--background-modifier-border);
+  border-radius: 999px;
+}
