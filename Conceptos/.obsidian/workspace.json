@@ -37,7 +37,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Explorador de archivos"
@@ -74,7 +76,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 345.4811592102051
   },
   "right": {
     "id": "ac25d478ed1350de",
@@ -178,9 +180,19 @@
   },
   "active": "4601b0965e5f679f",
   "lastOpenFiles": [
+    "README.md",
+    "Ofensiva-Pentesting.md.f6f0a89746139ab9c127d8558cb12141.tmp",
+    "Roles-Ciberseguridad.md",
+    "Reconocimiento-Activo.md",
+    "Ofensiva-Pentesting.md",
+    "Reconocimiento-Pasivo.md",
+    "Hashing.md",
+    "Frameworks-Pentest.md",
+    "Cyber-Kill-Chain.md",
+    "Infra-Pentest-Metasploit-Ejemplo.md",
+    "Metodologia-Pentest-Web-Chain.md",
     "Seguridad-de-Red.md",
     "Arquitectura-Web.md",
-    "Ofensiva-Pentesting.md",
     "Blue Team.md",
     "Sistemas-Operativos.md"
   ]
