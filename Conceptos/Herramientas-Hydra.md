@@ -64,3 +64,56 @@ Usa la pestaña **Network** de las DevTools del navegador (o mira el código fue
 2. Identificar campos del formulario o el protocolo.
 3. Elegir wordlist (ej. `rockyou.txt`).
 4. Lanzar Hydra con `-V` para ver progreso.
+
+---
+
+## Autenticación: los 3 factores
+Autenticación = probar quién dices ser. Se logra con uno o más de:
+- **Algo que sabes** — contraseña/PIN (lo que ataca Hydra).
+- **Algo que tienes** — teléfono, llave de seguridad, smart card.
+- **Algo que eres** — huella, reconocimiento facial.
+
+## Tipos de ataque de contraseñas
+| Tipo | Cómo funciona |
+|------|-----------------|
+| **Password Guessing** | requiere conocer al objetivo (mascota, año de nacimiento, equipo favorito — fácil de sacar de redes sociales) |
+| **Dictionary Attack** | prueba palabras comunes de una wordlist — efectivo porque muchos usan palabras reales |
+| **Brute Force** | prueba todas las combinaciones posibles — exhaustivo, efectivo contra contraseñas cortas (el espacio de búsqueda crece exponencialmente con la longitud) |
+| **Credential Stuffing** | usa pares usuario/contraseña filtrados de brechas previas contra **otros** servicios — explota la reutilización de contraseñas |
+| **Password Spraying** | prueba **pocas** contraseñas comunes contra **muchas** cuentas (al revés del brute force) — evade bloqueos por intentos fallidos |
+| **Hybrid Attack** | combina palabras de diccionario con patrones comunes (ej. `Summer2024`, `P@ssw0rd`) |
+
+> Contraseñas comunes que se siguen viendo en brechas recientes: `123456`, `password`/`Password1`, `qwerty`, nombre de la empresa + año (`Welcome1`, `Summer2024`).
+
+## Wordlists
+| Wordlist | Dónde |
+|----------|-------|
+| **rockyou.txt** | `/usr/share/wordlists/rockyou.txt` (AttackBox/Kali) — el clásico, ~14M contraseñas filtradas |
+| **SecLists** | `/usr/share/seclists/` — colección de múltiples wordlists para distintos propósitos |
+| **CrackStation** | wordlists optimizadas para crackeo de hashes |
+
+> La wordlist ideal depende del objetivo: usuarios franceses → wordlist en francés; empleados de una empresa → nombre de la empresa + años/estaciones. Una wordlist custom suele superar a una genérica.
+
+## Otras herramientas de ataque de contraseñas
+| Herramienta | Para qué |
+|-------------|----------|
+| **Medusa** | similar a Hydra, diseño modular, más estable en algunos protocolos |
+| **Ncrack** | del proyecto Nmap, testing de autenticación paralelo de alta velocidad |
+| **CrackMapExec / NetExec** | especializado en Windows/Active Directory — spray de contraseñas sobre SMB, WinRM, LDAP |
+| **Burp Suite Intruder** | útil contra formularios web de login que Hydra no maneja bien |
+| **Hashcat / John the Ripper** | crackeo de hashes **offline** (no ataca un servicio en vivo) — ver [[Herramientas-John-the-Ripper]] |
+
+## Mitigación de ataques de contraseñas
+- **Password policy moderna** (NIST SP 800-63B): priorizar **longitud** sobre reglas de complejidad, bloquear contraseñas ya filtradas en brechas, no forzar cambios periódicos sin evidencia de compromiso.
+- **Account lockout** — bloquea tras N intentos fallidos; efectivo contra brute force, pero se puede evadir con password spraying.
+- **Rate limiting / throttling** — delay entre intentos; molesto para bots, tolerable para usuarios reales.
+- **CAPTCHA** — idealmente con análisis de comportamiento, no solo reconocimiento de imagen.
+- **MFA (Multi-Factor Authentication)** — una de las defensas más efectivas.
+- **Passwordless**: **passkeys** (FIDO2/WebAuthn), magic links por email, llaves de seguridad físicas (YubiKey).
+- **Breached password detection** — comparar contra bases de datos de brechas conocidas (ej. API de "Have I Been Pwned") al registrar/cambiar contraseña.
+- **Behavioural analysis** — detectar logins desde ubicaciones inusuales o "viajes imposibles".
+
+## Notas relacionadas
+- [[Ataques-Sniffing-MITM]] — captura de credenciales cuando el protocolo va en texto plano
+- [[Protocolos-Aplicacion]] — servicios que Hydra puede atacar (FTP, SSH, SMTP, POP3, IMAP)
+- [[Herramientas-John-the-Ripper]] — crackeo de hashes offline (complementario a Hydra)

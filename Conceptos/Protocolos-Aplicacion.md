@@ -405,6 +405,86 @@ ssh username@hostname   # login inmediato ✅
 > [!warning] Fingerprint al conectar
 > Primera conexión → SSH muestra la huella RSA del servidor. Si en una conexión posterior la huella cambió → posible **Man-in-the-Middle attack**. Verificar siempre.
 
+### Verificación de host key (a fondo)
+En SSH normalmente **no hay un tercero (CA) que valide la clave del servidor** — por eso la verificación del fingerprint debe hacerse manualmente o por un canal separado (out-of-band), como preguntarle al administrador del servidor o revisarlo en un sistema de gestión de configuración.
+
+```
+The authenticity of host '10.64.190.246' can't be established.
+ED25519 key fingerprint is SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+Al aceptar, la clave se guarda en `~/.ssh/known_hosts`. Si la clave cambia inesperadamente después, SSH avisa — puede ser un MITM ([[Ataques-Sniffing-MITM]]) o que el servidor se reinstaló.
+
+### Métodos de autenticación SSH
+| Método | Notas |
+|--------|-------|
+| **Password** | más simple; el password viaja cifrado por el canal SSH, pero vulnerable a fuerza bruta con contraseñas débiles |
+| **Public key** | recomendado para uso regular; el servidor reta a probar que tienes la clave privada, sin transmitirla nunca |
+| **Certificate-based** | una SSH CA firma las claves de usuarios/hosts — evita distribuir claves públicas a cada servidor, escala mejor en organizaciones grandes |
+| **MFA** | combina métodos — ej. clave pública + OTP de una app autenticadora |
+
+### Generar claves (tipos recomendados)
+```bash
+# Ed25519 — recomendado hoy: más corta, más rápida, más segura
+ssh-keygen -t ed25519 -C "tu_email@ejemplo.com"
+
+# RSA — si el sistema no soporta Ed25519, usar al menos 4096 bits
+ssh-keygen -t rsa -b 4096 -C "tu_email@ejemplo.com"
+```
+La clave privada (`~/.ssh/id_ed25519`) debe protegerse con una **passphrase** fuerte; la pública (`.pub`) se puede compartir sin riesgo.
+
+```bash
+ssh-copy-id mark@10.64.190.246   # copia tu clave pública a ~/.ssh/authorized_keys del servidor
+```
+
+### Opciones útiles de conexión
+```bash
+ssh -p 2222 mark@10.64.190.246              # puerto no estándar
+ssh -i ~/.ssh/custom_key mark@10.64.190.246 # usar una clave privada específica
+ssh -J bastion.example.com mark@internal-server  # saltar por un bastion/jump host
+ssh -L 8080:localhost:80 mark@10.64.190.246 # port forwarding local
+ssh -D 9050 mark@10.64.190.246              # proxy SOCKS dinámico
+ssh mark@10.64.190.246 "cat /etc/passwd"    # ejecutar un solo comando sin shell interactiva
+```
+
+### Archivo de configuración (`~/.ssh/config`)
+```
+Host webserver
+    HostName 10.64.190.246
+    User mark
+    Port 22
+    IdentityFile ~/.ssh/id_ed25519
+
+Host internal
+    HostName 10.10.10.50
+    User admin
+    ProxyJump bastion.example.com
+```
+Con esto, `ssh webserver` reemplaza el comando completo.
+
+### Transferencia segura de archivos: SFTP vs SCP vs rsync
+| Herramienta | Cuándo usar |
+|-------------|--------------|
+| **SFTP** | recomendado para transferencias interactivas — interfaz tipo FTP sobre SSH cifrado (`sftp mark@10.64.190.246`) |
+| **SCP** | copias simples; **OpenSSH lo dejó deprecado** por problemas de seguridad del protocolo (sigue funcionando pero con warning) |
+| **rsync -e ssh** | preferido para grandes volúmenes o sincronizar directorios — solo transfiere lo que cambió |
+
+```bash
+scp mark@10.64.190.246:/home/mark/archive.tar.gz ~/     # descargar
+scp backup.tar.bz2 mark@10.64.190.246:/home/mark/       # subir
+rsync -avz -e ssh /local/directory/ mark@10.64.190.246:/remote/directory/
+```
+
+> Diferencia con FTPS: **SFTP** corre sobre SSH (puerto 22); **FTPS** es FTP + TLS (puerto 990) — son protocolos distintos pese al nombre parecido. SFTP es la opción más común hoy porque reutiliza la autenticación/cifrado de SSH.
+
+### Hardening de un servidor SSH (`/etc/ssh/sshd_config`)
+- `PasswordAuthentication no` — deshabilitar login por password una vez configuradas las claves.
+- `PermitRootLogin no` — forzar login como usuario regular primero.
+- `AllowUsers` / `AllowGroups` — restringir qué cuentas pueden entrar por SSH.
+- Cambiar el puerto default reduce ruido de escaneos automatizados (no es un control fuerte por sí solo).
+- **fail2ban** (u similar) para bloquear intentos fallidos repetidos.
+- Configurar `KexAlgorithms`, `Ciphers`, `MACs` modernos.
+
 ---
 
 ## Protocolos de Email Seguros — TLS en el Correo
@@ -530,3 +610,6 @@ ss -tlnp         ← alternativa moderna
 - [[Seguridad-de-Red]] — Firewall filtra puertos; estos protocolos son vectores de ataque
 - [[Ofensiva-Pentesting]] — FTP anónimo, SMTP open relay, TELNET como vectores de explotación
 - [[Protocolos-ARP-DHCP]] — DHCP (puerto 67/68 UDP), ARP, ICMP
+- [[Ataques-Sniffing-MITM]] — cómo se capturan credenciales de estos protocolos en texto plano, y cómo un MITM los intercepta
+- [[TLS-SSL-Fundamentos]] — el mecanismo de cifrado detrás de las versiones "S" (HTTPS, FTPS, SMTPS, POP3S, IMAPS)
+- [[Herramientas-Hydra]] — ataques de fuerza bruta contra estos mismos servicios (FTP, SSH, SMTP, POP3, IMAP)

@@ -56,6 +56,8 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[Metodologia-Pentest-Web-Chain]] — caso completo: IDOR → password reset → RCE
 - [[Infra-Pentest-Metasploit-Ejemplo]] — caso completo: nmap → searchsploit → Metasploit → privesc
 - [[OWASP-Top-10-2025]] — las 9 categorías con ejemplos reales
+- [[Ataques-Sniffing-MITM]] — captura de paquetes (tcpdump), ARP/DNS spoofing, rogue AP, SSL stripping
+- [[TLS-SSL-Fundamentos]] — historia, handshake, implicit TLS vs STARTTLS, certificados
 
 ## 🛡️ Defensiva / Blue Team
 - [[Defensiva-Blue-Team]] — nota general
