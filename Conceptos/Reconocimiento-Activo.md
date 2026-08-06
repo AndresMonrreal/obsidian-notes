@@ -101,6 +101,58 @@ nc -vnlp 1234       # escuchar en el puerto 1234
 
 > Puertos < 1024 requieren privilegios root para escuchar. Para cifrado, usar `ncat --ssl` (de Nmap) en vez de `nc`.
 
+## `nmap` — descubrimiento de hosts (host discovery)
+Antes de escanear puertos (ver [[TCP-UDP-Puertos]]), Nmap puede usarse solo para averiguar qué hosts están vivos en un rango o subred — evita perder tiempo escaneando puertos de una IP que ni siquiera responde. Usa protocolos de distintas capas: **ARP** (enlace), **ICMP** (red), **TCP** y **UDP** (transporte). El flag `-sn` le dice a Nmap que se quede solo en el descubrimiento, sin pasar a escanear puertos después.
+
+### Especificar objetivos
+Lista (`nmap IP1 IP2 dominio.com`) · rango (`nmap 10.11.12.15-20`, 6 IPs) · subred (`nmap IP/30`, 4 IPs) · archivo (`nmap -iL lista.txt`). Para ver qué hosts va a tocar sin escanearlos de verdad: `nmap -sL TARGETS` (ojo: por default sí intenta resolución DNS inversa sobre todos — para evitarlo, sumar `-n`).
+
+### Comportamiento por defecto (sin especificar técnica)
+| Situación | Qué usa Nmap |
+|---|---|
+| Privilegiado + objetivo en la LAN | ARP requests |
+| Privilegiado + objetivo fuera de la LAN | ICMP Echo + TCP ACK a 80 + TCP SYN a 443 + ICMP Timestamp |
+| Sin privilegios + objetivo fuera de la LAN | 3-way handshake TCP (SYN) a 80 y 443 |
+
+### ARP Scan — `-PR`
+Solo funciona si estás en la **misma subred** que el objetivo (ARP no se enruta). Es la técnica más fiable en LAN — muchos firewalls no filtran capa 2, por eso también es clave en post-explotación / enumeración interna una vez dentro de una red.
+```bash
+nmap -PR -sn 10.65.84.234/24
+```
+
+### ICMP — Echo / Timestamp / Address Mask (`-PE` / `-PP` / `-PM`)
+El ping clásico usa Echo Request/Reply (type 8/0), pero muchos firewalls lo bloquean (Windows lo bloquea por default). Si Echo falla, Nmap puede probar Timestamp (type 13/14) o Address Mask (type 17/18) — cada firewall filtra distinto, conviene tener las tres a la mano.
+```bash
+nmap -PE -sn 10.200.6.0/24   # ICMP Echo
+nmap -PP -sn 10.200.6.0/24   # ICMP Timestamp
+nmap -PM -sn 10.200.6.0/24   # ICMP Address Mask
+```
+
+### TCP SYN / ACK Ping — `-PS` / `-PA`
+Mandan un paquete con la bandera SYN o ACK a un puerto (80 por default); cualquier respuesta (SYN/ACK o RST) confirma que el host vive — aquí no importa el estado real del puerto.
+```bash
+nmap -PS -sn TARGETS          # SYN, puerto 80 por default
+nmap -PS21,80,443 -sn TARGETS # SYN a puertos específicos (ej. -PS23 para telnet)
+nmap -PA -sn TARGETS          # ACK, puerto 80 por default
+```
+- `-PS` **no requiere privilegios**: sin ellos, Nmap completa el 3-way handshake normal por la pila del SO en vez de mandar el SYN "crudo" — el resultado del descubrimiento es igual.
+- `-PA` **sí requiere `sudo`**: un ACK sin conexión previa no se puede armar con la API de sockets normal del SO — hace falta un raw socket, reservado a root/sudoers.
+
+### UDP Ping — `-PU`
+Manda un paquete UDP a un puerto (idealmente cerrado). Si el puerto está **cerrado**, el sistema responde con ICMP "port unreachable" — esa respuesta confirma que el host vive (un puerto UDP abierto normalmente no contesta nada).
+```bash
+nmap -PU53,161,162 -sn TARGETS
+```
+
+### DNS: `-n` vs `-R`
+Por default Nmap solo intenta rDNS de los hosts que **confirmó vivos**. `-n` la desactiva por completo (más velocidad). `-R` la fuerza incluso en los que no respondieron — útil porque el registro DNS puede seguir revelando info (ej. `dc01.domain.com` delata un Domain Controller) aunque el host no conteste al ping.
+
+### Masscan (alternativa más agresiva)
+```bash
+masscan 10.200.6.0/24 -p80,443
+```
+Mismo concepto que Nmap pero mucho más rápido/agresivo en la tasa de paquetes — pensado para escaneos masivos. No viene preinstalado en la AttackBox (`apt install masscan`).
+
 ## Referencia rápida
 | Comando | Propósito |
 |---------|-----------|
@@ -111,6 +163,8 @@ nc -vnlp 1234       # escuchar en el puerto 1234
 | `nc MACHINE_IP PUERTO` | banner grabbing (cliente) |
 | `nc -lvnp PUERTO` | listener (servidor) |
 | `curl -I http://MACHINE_IP` | banner grabbing HTTP (más seguro que telnet) |
+| `nmap -PR -sn RANGO` | descubrimiento de hosts en la LAN (ARP) |
+| `nmap -PE -sn RANGO` | descubrimiento de hosts fuera de la LAN (ICMP Echo) |
 
 ## Combinar reconocimiento pasivo + activo
 Flujo típico: `ping` confirma que el host vive → `traceroute` entiende la ruta de red → `nc`/`telnet` prueban puertos específicos y confirman qué servicio corre → de ahí se pasa a escáneres más avanzados como Nmap ([[TCP-UDP-Puertos]]) o herramientas dedicadas por protocolo.

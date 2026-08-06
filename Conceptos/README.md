@@ -52,9 +52,10 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[Frameworks-Pentest]] — OSSTMM, WSTG, NIST 800-115, PTES, ISSAF, MITRE ATT&CK
 - [[Cyber-Kill-Chain]] — las 7 etapas de un ataque
 - [[Reconocimiento-Pasivo]] — WHOIS/RDAP, dig, DNSDumpster, crt.sh, Shodan
-- [[Reconocimiento-Activo]] — DevTools, ping, traceroute, telnet, netcat
+- [[Reconocimiento-Activo]] — DevTools, ping, traceroute, telnet, netcat, nmap (host discovery)
 - [[Metodologia-Pentest-Web-Chain]] — caso completo: IDOR → password reset → RCE
 - [[Infra-Pentest-Metasploit-Ejemplo]] — caso completo: nmap → searchsploit → Metasploit → privesc
+- [[Web-Pentest-SSRF-Ejemplo]] — caso completo: fingerprint de wkhtmltopdf → HTML injection → LFI bloqueado → SSRF contra endpoint interno
 - [[OWASP-Top-10-2025]] — las 9 categorías con ejemplos reales
 - [[Ataques-Sniffing-MITM]] — captura de paquetes (tcpdump), ARP/DNS spoofing, rogue AP, SSL stripping
 - [[TLS-SSL-Fundamentos]] — historia, handshake, implicit TLS vs STARTTLS, certificados
