@@ -53,6 +53,7 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[Cyber-Kill-Chain]] — las 7 etapas de un ataque
 - [[Reconocimiento-Pasivo]] — WHOIS/RDAP, dig, DNSDumpster, crt.sh, Shodan
 - [[Reconocimiento-Activo]] — DevTools, ping, traceroute, telnet, netcat, nmap (host discovery)
+- [[Nmap-Escaneo-Puertos]] — estados de puerto, TCP Connect/SYN/UDP scan, especificar puertos, timing y rate
 - [[Metodologia-Pentest-Web-Chain]] — caso completo: IDOR → password reset → RCE
 - [[Infra-Pentest-Metasploit-Ejemplo]] — caso completo: nmap → searchsploit → Metasploit → privesc
 - [[Web-Pentest-SSRF-Ejemplo]] — caso completo: fingerprint de wkhtmltopdf → HTML injection → LFI bloqueado → SSRF contra endpoint interno
