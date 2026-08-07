@@ -11,6 +11,12 @@ echo "MACHINE_IP futurevera.thm" | sudo tee -a /etc/hosts
 ```
 `sudo tee -a` escribe con privilegios root al final del archivo (`-a` = append). Se usa `tee` en vez de `echo ... >> archivo` porque la redirección `>>` corre con tus permisos normales aunque antepongas `sudo` al `echo` — bash resuelve la redirección antes de aplicar el `sudo`, así que ese patrón falla por permisos.
 
+Verificar que la entrada quedó bien antes de seguir (`cat /etc/hosts`) y confirmar que el nombre resuelve a la IP esperada:
+```bash
+ping -c 1 futurevera.thm
+```
+`-c 1` manda un solo paquete ICMP — aquí no importa si responde, solo que muestre la IP correcta.
+
 ## Fase 2 — Confirmar que el sitio responde
 ```bash
 curl -sk -o /dev/null -w "%{http_code}\n" https://futurevera.thm
@@ -18,12 +24,25 @@ curl -sk -o /dev/null -w "%{http_code}\n" https://futurevera.thm
 `-s` modo silencioso · `-k` ignora errores de certificado SSL autofirmado (típico en estas VMs) · `-o /dev/null` descarta el body, solo interesa el código · `-w "%{http_code}\n"` imprime el código HTTP devuelto (200 = vivo, 000 = no conectó).
 
 ## Fase 3 — Revisar el sitio principal a mano
+Antes de leer todo a mano, un primer filtro rápido con grep ahorra tiempo:
+```bash
+curl -sk https://futurevera.thm | grep -iE "subdomain|support|blog|portal"
+```
+`grep -iE "a|b|c"` busca varios patrones a la vez (`-E` = extended regex), ignorando mayúsculas (`-i`).
+
 ```bash
 curl -sk https://futurevera.thm | less
 ```
 Sin filtros, para leer el HTML completo buscando comentarios, nombres de archivos o pistas de subdominios (`less` permite navegarlo con calma, `q` para salir).
 
 ## Fase 4 — Enumeración de subdominios (vhost fuzzing)
+Si no sabes la ruta exacta de la wordlist, localizarla primero:
+```bash
+find / -iname "*subdomain*" 2>/dev/null
+find / -iname "*seclists*" -maxdepth 6 2>/dev/null
+```
+`find / -iname "*patron*"` busca en todo el sistema ignorando mayúsculas · `2>/dev/null` descarta errores de "permiso denegado" · `-maxdepth 6` limita la profundidad para que sea más rápido.
+
 ```bash
 gobuster vhost -u https://futurevera.thm \
   -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt \

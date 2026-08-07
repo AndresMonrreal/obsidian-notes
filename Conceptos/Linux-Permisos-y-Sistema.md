@@ -297,6 +297,44 @@ sudo su          # cambiar a root
 
 ---
 
+## Escalada de Privilegios (Linux) — Chequeo Rápido
+
+Secuencia estándar de enumeración una vez dentro de un sistema (post-explotación), sin importar la vía de entrada:
+
+```bash
+sudo -l                                    # qué comandos puedo correr con sudo (¿pide contraseña?)
+find / -perm -4000 -type f 2>/dev/null     # binarios con bit SUID (corren con permisos del dueño)
+getcap -r / 2>/dev/null                    # binarios con "capabilities" (alternativa moderna a SUID)
+cat /etc/crontab; ls -la /etc/cron.d/; crontab -l   # tareas programadas — candidatas si son escribibles
+ss -tlnp                                   # sockets TCP en escucha — servicios internos solo en 127.0.0.1
+find / -xdev -writable -not -path "/ruta/*" 2>/dev/null   # archivos/carpetas donde SÍ puedes escribir
+```
+- `sudo -l` — primer chequeo siempre; revela si hay binarios/scripts que puedas correr como root sin contraseña (ver GTFOBins para explotarlos según el binario).
+- `find / -perm -4000 -type f` — SUID permite ejecutar un binario con los permisos de su dueño (no de quien lo corre); binarios SUID fuera de la lista estándar del sistema son sospechosos.
+- `getcap -r /` — capabilities le dan a un binario un permiso específico de root (ej. `cap_setuid`) sin ser SUID completo — menos conocido, igual de explotable.
+- `ss -tlnp` (`-t` TCP · `-l` listening · `-n` puertos numéricos · `-p` proceso dueño, puede fallar sin privilegios) — revela servicios que solo escuchan en `127.0.0.1`, invisibles desde afuera pero alcanzables desde dentro una vez con shell.
+- `find / -xdev -writable ...` (`-xdev` no cruza a otros filesystems montados) — ⚠️ cuidado con symlinks a `/dev/null` marcados "escribibles" pero sin efecto real (típico de servicios enmascarados).
+
+### Cuando `ps` no sirve (hidepid)
+```bash
+systemctl list-units --type=service --state=running --no-pager
+cat /etc/systemd/system/NOMBRE.service
+find /etc/systemd/system /lib/systemd/system /usr/lib/systemd/system -iname "*patron*"
+```
+`systemctl list-units` no depende de `ps` (que puede estar restringido) — lista servicios activos gestionados por systemd. El archivo `.service` revela bajo qué usuario corre (`User=`) y el comando exacto (`ExecStart=`) — clave si sospechas que un servicio corre como root.
+
+### Otros archivos de interés
+```bash
+cat /etc/passwd                 # todos los usuarios y su shell — revela cuentas de servicio
+cat /etc/group | grep -E "grupo1|grupo2"   # membresías de grupos específicos
+find / -iname "*.py" -o -iname "*.php" 2>/dev/null   # leer código fuente real > adivinar comportamiento
+```
+
+> [!tip] Antes de adivinar, lee el código
+> Si tienes acceso al código fuente de un servicio (`.py`, `.php`, etc.), léelo con `cat`/`grep -n`/`sed -n 'X,Yp'` en vez de intentar a ciegas — ahorra tiempo y evita descartar rutas válidas por error.
+
+---
+
 ## Notas relacionadas
 
 - [[Linux-Herramientas-y-Admin]] — nano, wget, scp, cron, apt, logs

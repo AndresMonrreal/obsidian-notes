@@ -58,6 +58,7 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[Infra-Pentest-Metasploit-Ejemplo]] — caso completo: nmap → searchsploit → Metasploit → privesc
 - [[Web-Pentest-SSRF-Ejemplo]] — caso completo: fingerprint de wkhtmltopdf → HTML injection → LFI bloqueado → SSRF contra endpoint interno
 - [[Reconocimiento-Subdominios-Takeover-Ejemplo]] — caso completo: vhost fuzzing → SAN del certificado TLS → subdominio escondido → subdomain takeover
+- [[Web-Pentest-RCE-Privesc-Ejemplo]] — caso completo: command injection → reverse shell → privesc → pivote a servicio interno → AJAX auth → Bearer token
 - [[OWASP-Top-10-2025]] — las 9 categorías con ejemplos reales
 - [[Ataques-Sniffing-MITM]] — captura de paquetes (tcpdump), ARP/DNS spoofing, rogue AP, SSL stripping
 - [[TLS-SSL-Fundamentos]] — historia, handshake, implicit TLS vs STARTTLS, certificados
