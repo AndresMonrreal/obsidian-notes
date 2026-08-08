@@ -61,6 +61,16 @@ El `%` es wildcard — busca certificados de **cualquier** subdominio de `tryhac
 
 > Perspectiva defensiva: las organizaciones monitorean sus propios logs CT y listas de subdominios para detectar **dangling DNS records** (riesgo de subdomain takeover) o subdominios no autorizados.
 
+### Wayback Machine — línea de tiempo de exposición pública
+Además de subdominios, el **CDX API** de Wayback Machine (`web.archive.org`) sirve para reconstruir **cuándo** un recurso específico estuvo expuesto públicamente — útil para fechar hallazgos como un `.git/HEAD` filtrado o un endpoint que ya no existe.
+
+```bash
+curl "http://web.archive.org/cdx/search/cdx?url=SITIO/.git/HEAD&output=json"
+```
+Devuelve cada snapshot registrado de esa URL exacta, con timestamp — si aparece un resultado, confirma que el recurso fue público (indexable) desde al menos esa fecha, dato útil para el reporte de un hallazgo de exposición.
+
+> Dato secundario para lo mismo: la fecha de emisión del certificado SSL en `crt.sh` (`https://crt.sh/?q=SITIO&output=json`) acota cuándo un (sub)dominio empezó a existir, aunque no confirma que un recurso específico estuviera expuesto.
+
 ## Shodan — motor de búsqueda de dispositivos
 A diferencia de Google (indexa páginas web), **Shodan** indexa **dispositivos conectados a internet**: servidores, IoT, cámaras, routers, sistemas de control industrial. Escanea continuamente y guarda banners/respuestas de puertos abiertos.
 

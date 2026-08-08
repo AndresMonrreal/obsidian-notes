@@ -65,6 +65,9 @@ sudo nmap -sU --top-ports 10 10.66.171.192
 - `--min-rate <n>` / `--max-rate <n>` → controla paquetes por segundo directo (ej. `--max-rate 10` = no más de 10 pps).
 - `--min-parallelism <n>` / `--max-parallelism <n>` → cuántas sondas de descubrimiento/puertos corren en paralelo (ej. `--min-parallelism 64` fuerza al menos 64 simultáneas).
 
+## Opciones útiles adicionales
+- `-Pn` → salta por completo la fase de descubrimiento de host y trata al objetivo como si ya estuviera confirmado vivo — útil cuando bloquea ping/ICMP pero sabes que está arriba (típico en dominios web detrás de un WAF/CDN). Sin `-Pn`, Nmap podría descartar como "offline" un host que en realidad sí responde en sus puertos TCP/UDP, solo que no contesta ICMP.
+
 ## Referencia rápida
 | Tipo de scan | Comando |
 |---|---|

@@ -10,6 +10,15 @@ Ediciones:
 - **Professional** (escáner automático, fuzzer sin límite, Collaborator, guardar proyectos).
 - **Enterprise** (escaneo continuo en servidor).
 
+## Primer arranque (wizard inicial, Community)
+Al abrir Burp, dos pantallas de configuración antes de llegar a la interfaz:
+1. **New Project**: dejar seleccionado **"Temporary project in memory"** → *Next* (Community no soporta guardar proyectos en disco — esa opción solo existe en Pro).
+2. **Select configuration**: dejar **"Use Burp defaults"** → *Start Burp*.
+
+Ya dentro, en la pestaña **Proxy** → botón **"Open Browser"** abre el navegador Chromium integrado (Burp Browser), que ya trae el proxy y el certificado de Burp preconfigurados — más rápido que configurar FoxyProxy a mano (ver más abajo la alternativa manual).
+
+Dejar **Intercept is off** para navegar normal sin que cada request se detenga a pedir Forward — todo el tráfico igual queda registrado en **Proxy > HTTP History** para revisarlo después.
+
 ## Funciones principales (Community)
 | Herramienta | Uso |
 |-------------|-----|

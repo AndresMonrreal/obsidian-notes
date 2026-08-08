@@ -43,6 +43,7 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[Herramientas-Metasploit]] — msfconsole, msfvenom, Meterpreter
 - [[Herramientas-Burp-Suite]] — proxy, intercepción, XSS
 - [[Herramientas-CyberChef]] — encoding/decoding, recetas
+- [[Herramientas-SQLMap]] — detección y explotación automática de SQL injection
 - [[Herramientas-CAPA-Malware-Analysis]] — análisis estático de malware
 - [[Herramientas-REMnux]] — oledump, INetSim, Volatility
 - [[Herramientas-FlareVM]] — PEStudio, FLOSS, Process Monitor/Explorer
@@ -51,9 +52,10 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[Ofensiva-Pentesting]] — **nota central**: terminología, red vs pentest, vulnerabilidad/amenaza/riesgo, mindset, ética
 - [[Frameworks-Pentest]] — OSSTMM, WSTG, NIST 800-115, PTES, ISSAF, MITRE ATT&CK
 - [[Cyber-Kill-Chain]] — las 7 etapas de un ataque
-- [[Reconocimiento-Pasivo]] — WHOIS/RDAP, dig, DNSDumpster, crt.sh, Shodan
+- [[Reconocimiento-Pasivo]] — WHOIS/RDAP, dig, DNSDumpster, crt.sh, Wayback Machine, Shodan
 - [[Reconocimiento-Activo]] — DevTools, ping, traceroute, telnet, netcat, nmap (host discovery)
 - [[Nmap-Escaneo-Puertos]] — estados de puerto, TCP Connect/SYN/UDP scan, especificar puertos, timing y rate
+- [[Git-Expuesto-y-Fuga-de-Secretos]] — detectar `.git` expuesto, git-dumper/GitTools, gitleaks, auditar código recuperado
 - [[Metodologia-Pentest-Web-Chain]] — caso completo: IDOR → password reset → RCE
 - [[Infra-Pentest-Metasploit-Ejemplo]] — caso completo: nmap → searchsploit → Metasploit → privesc
 - [[Web-Pentest-SSRF-Ejemplo]] — caso completo: fingerprint de wkhtmltopdf → HTML injection → LFI bloqueado → SSRF contra endpoint interno

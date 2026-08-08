@@ -302,6 +302,39 @@ sudo apt remove nombre-paquete
 
 ---
 
+## Instalar herramientas Python sin romper el sistema — pipx
+Instalar paquetes Python con `pip install` directo al sistema puede romper las dependencias que usa el propio SO (las distros modernas bloquean `pip install` global con el error *externally-managed-environment*). **`pipx`** instala cada herramienta de línea de comandos en su propio entorno virtual aislado, pero la deja disponible globalmente en el PATH — sin ensuciar el Python del sistema.
+
+```bash
+sudo apt update
+sudo apt install pipx -y
+pipx ensurepath
+# abrir una terminal nueva, o: source ~/.zshrc (o ~/.bashrc)
+```
+`pipx ensurepath` agrega el directorio de binarios de pipx al `PATH` — sin este paso, las herramientas instaladas no se reconocen como comando directo.
+
+```bash
+pipx install git-dumper
+```
+Instala la herramienta de forma permanente (queda disponible como comando normal en cualquier sesión futura).
+
+```bash
+pipx run git-dumper http://SITIO/.git/ ./elrepo
+```
+`pipx run` descarga y ejecuta la herramienta una sola vez sin instalarla — útil si el PATH no cargó todavía o solo la vas a usar una vez.
+
+**Alternativa manual con venv** (si `pipx` no está disponible):
+```bash
+python3 -m venv ~/venvs/pentest
+source ~/venvs/pentest/bin/activate
+pip install git-dumper
+```
+
+> [!tip] pipx vs venv manual
+> `pipx` es la opción rápida para herramientas de CLI que vas a usar seguido (git-dumper, gitleaks, sqlmap, etc.). Un `venv` manual tiene más sentido para proyectos propios donde necesitas controlar exactamente qué paquetes conviven en el mismo entorno.
+
+---
+
 ## Archivos de Log en Linux
 
 Los logs registran la actividad de servicios, aplicaciones y el sistema. Se encuentran en `/var/log`.
