@@ -67,6 +67,7 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[Reconocimiento-Subdominios-Takeover-Ejemplo]] — caso completo: vhost fuzzing → SAN del certificado TLS → subdominio escondido → subdomain takeover
 - [[Web-Pentest-RCE-Privesc-Ejemplo]] — caso completo: command injection → reverse shell → privesc → pivote a servicio interno → AJAX auth → Bearer token
 - [[OWASP-Top-10-2025]] — las 9 categorías con ejemplos reales
+- [[Fingerprinting-Stacks-Web-CVEs]] — identificar MERN/Next.js/Django/LAMP por señales HTTP y explotar CVEs reales de cada uno (CVE-2025-29927, CVE-2021-35042, CVE-2021-41773) + Nikto
 - [[Ataques-Sniffing-MITM]] — captura de paquetes (tcpdump), ARP/DNS spoofing, rogue AP, SSL stripping
 - [[TLS-SSL-Fundamentos]] — historia, handshake, implicit TLS vs STARTTLS, certificados
 
