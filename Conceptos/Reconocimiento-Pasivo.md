@@ -88,6 +88,8 @@ http.component:"wordpress"
 ```
 Alternativa/complemento: **Censys.io** (datos similares de hosts y certificados).
 
+> Más técnicas OSINT (Google dorking, Wappalyzer, GitHub, S3 buckets) y content discovery manual/automatizado en [[Content-Discovery-Manual-OSINT-y-Gobuster]].
+
 ## Referencia rápida de comandos
 | Propósito | Comando |
 |-----------|---------|

@@ -55,6 +55,7 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[Reconocimiento-Pasivo]] — WHOIS/RDAP, dig, DNSDumpster, crt.sh, Wayback Machine, Shodan
 - [[Reconocimiento-Activo]] — DevTools, ping, traceroute, telnet, netcat, nmap (host discovery)
 - [[Reconocimiento-Manual-Web-y-DevTools]] — page source, Inspector, Debugger/breakpoints, Network (AJAX), Storage (cookies HttpOnly/Secure/SameSite)
+- [[Content-Discovery-Manual-OSINT-y-Gobuster]] — robots.txt/sitemap.xml, Google dorking, Wappalyzer, GitHub, S3 buckets, Gobuster dir/dns/vhost
 - [[Nmap-Escaneo-Puertos]] — estados de puerto, TCP Connect/SYN/UDP scan, especificar puertos, timing y rate
 - [[Nmap-Escaneo-Avanzado-y-Evasion]] — Null/FIN/Xmas/Maimon/ACK/Window scan, spoofing IP/MAC, decoy, fragmentación, idle scan, OS fingerprinting
 - [[Nmap-Deteccion-Servicios-NSE-y-Reportes]] — -sV, -O, traceroute, Nmap Scripting Engine, formatos de salida (-oN/-oG/-oX/-oA), -A
