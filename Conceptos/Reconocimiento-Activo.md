@@ -19,6 +19,8 @@ El navegador es de las herramientas más útiles y menos sospechosas: su tráfic
 ### Extensiones útiles
 **Wappalyzer** (identifica CMS, frameworks JS, servidores, analytics, CDN de forma pasiva mientras navegas) · **FoxyProxy** (cambiar entre proxies como Burp Suite/ZAP) · **User-Agent Switcher** (emular otro navegador/dispositivo — pero cambios rápidos de UA pueden disparar WAFs modernos).
 
+> Flujo completo de testing manual (page source, Inspector, Debugger, Network, Storage) en [[Reconocimiento-Manual-Web-y-DevTools]].
+
 ## `ping` — verificar si el objetivo está vivo
 Usa **ICMP**: envía Echo Request (type 8), espera Echo Reply (type 0).
 
