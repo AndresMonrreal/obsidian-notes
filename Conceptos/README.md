@@ -56,6 +56,7 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[Reconocimiento-Activo]] — DevTools, ping, traceroute, telnet, netcat, nmap (host discovery)
 - [[Nmap-Escaneo-Puertos]] — estados de puerto, TCP Connect/SYN/UDP scan, especificar puertos, timing y rate
 - [[Nmap-Escaneo-Avanzado-y-Evasion]] — Null/FIN/Xmas/Maimon/ACK/Window scan, spoofing IP/MAC, decoy, fragmentación, idle scan, OS fingerprinting
+- [[Nmap-Deteccion-Servicios-NSE-y-Reportes]] — -sV, -O, traceroute, Nmap Scripting Engine, formatos de salida (-oN/-oG/-oX/-oA), -A
 - [[TCP-Escaneo-Riesgos-y-Defensa]] — síntesis: banderas TCP, 3-way handshake, SYN flood, qué filtra cada scan, defensas y nota legal
 - [[Git-Expuesto-y-Fuga-de-Secretos]] — detectar `.git` expuesto, git-dumper/GitTools, gitleaks, auditar código recuperado
 - [[Metodologia-Pentest-Web-Chain]] — caso completo: IDOR → password reset → RCE
