@@ -43,6 +43,7 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[Herramientas-Metasploit]] — msfconsole, msfvenom, Meterpreter
 - [[Herramientas-Burp-Suite]] — proxy, intercepción, XSS
 - [[Herramientas-Burp-Suite-Repeater]] — interfaz, Inspector, fuzzing manual de endpoints, Union SQL Injection paso a paso
+- [[Herramientas-Burp-Suite-Intruder]] — Positions/Payloads, Sniper/Battering Ram/Pitchfork/Cluster Bomb, macros para tokens CSRF/cookies
 - [[Herramientas-CyberChef]] — encoding/decoding, recetas
 - [[Herramientas-SQLMap]] — detección y explotación automática de SQL injection
 - [[Herramientas-CAPA-Malware-Analysis]] — análisis estático de malware
@@ -67,6 +68,7 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[Web-Pentest-SSRF-Ejemplo]] — caso completo: fingerprint de wkhtmltopdf → HTML injection → LFI bloqueado → SSRF contra endpoint interno
 - [[Reconocimiento-Subdominios-Takeover-Ejemplo]] — caso completo: vhost fuzzing → SAN del certificado TLS → subdominio escondido → subdomain takeover
 - [[Web-Pentest-RCE-Privesc-Ejemplo]] — caso completo: command injection → reverse shell → privesc → pivote a servicio interno → AJAX auth → Bearer token
+- [[Web-Pentest-Credential-Stuffing-IDOR-Ejemplo]] — caso completo: credential stuffing (Pitchfork) → login → IDOR en tickets (Sniper), replicado con curl
 - [[OWASP-Top-10-2025]] — las 9 categorías con ejemplos reales
 - [[Fingerprinting-Stacks-Web-CVEs]] — identificar MERN/Next.js/Django/LAMP por señales HTTP y explotar CVEs reales de cada uno (CVE-2025-29927, CVE-2021-35042, CVE-2021-41773) + Nikto
 - [[Misconfiguraciones-Servidores-Web]] — Apache (mod_status, directory listing), Nginx (autoindex, stub_status), Node/Express (debug endpoints), Python http.server, headers de seguridad, Nikto
