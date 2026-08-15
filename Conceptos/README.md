@@ -68,6 +68,8 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[Web-Pentest-RCE-Privesc-Ejemplo]] — caso completo: command injection → reverse shell → privesc → pivote a servicio interno → AJAX auth → Bearer token
 - [[OWASP-Top-10-2025]] — las 9 categorías con ejemplos reales
 - [[Fingerprinting-Stacks-Web-CVEs]] — identificar MERN/Next.js/Django/LAMP por señales HTTP y explotar CVEs reales de cada uno (CVE-2025-29927, CVE-2021-35042, CVE-2021-41773) + Nikto
+- [[Misconfiguraciones-Servidores-Web]] — Apache (mod_status, directory listing), Nginx (autoindex, stub_status), Node/Express (debug endpoints), Python http.server, headers de seguridad, Nikto
+- [[IIS-WebDAV-Tilde-y-Misconfiguraciones]] — fingerprint de IIS, WebDAV shell upload (NTLM), tilde enumeration 8.3, reverse shell PowerShell, SeImpersonatePrivilege, 7 misconfiguraciones
 - [[Ataques-Sniffing-MITM]] — captura de paquetes (tcpdump), ARP/DNS spoofing, rogue AP, SSL stripping
 - [[TLS-SSL-Fundamentos]] — historia, handshake, implicit TLS vs STARTTLS, certificados
 

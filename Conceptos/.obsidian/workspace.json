@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "Reconocimiento-Activo.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "Reconocimiento-Activo"
             }
           }
         ]
@@ -40,7 +40,7 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical",
+                "sortOrder": "byCreatedTime",
                 "autoReveal": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -184,12 +184,13 @@
   },
   "active": "4601b0965e5f679f",
   "lastOpenFiles": [
+    "Content-Discovery-Manual-OSINT-y-Gobuster.md",
+    "Reconocimiento-Pasivo.md",
     "README.md",
     "Ofensiva-Pentesting.md.f6f0a89746139ab9c127d8558cb12141.tmp",
     "Roles-Ciberseguridad.md",
     "Reconocimiento-Activo.md",
     "Ofensiva-Pentesting.md",
-    "Reconocimiento-Pasivo.md",
     "Hashing.md",
     "Frameworks-Pentest.md",
     "Cyber-Kill-Chain.md",
