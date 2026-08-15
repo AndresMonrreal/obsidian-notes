@@ -42,6 +42,7 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[Herramientas-John-the-Ripper]] — crackeo de hashes
 - [[Herramientas-Metasploit]] — msfconsole, msfvenom, Meterpreter
 - [[Herramientas-Burp-Suite]] — proxy, intercepción, XSS
+- [[Herramientas-Burp-Suite-Repeater]] — interfaz, Inspector, fuzzing manual de endpoints, Union SQL Injection paso a paso
 - [[Herramientas-CyberChef]] — encoding/decoding, recetas
 - [[Herramientas-SQLMap]] — detección y explotación automática de SQL injection
 - [[Herramientas-CAPA-Malware-Analysis]] — análisis estático de malware

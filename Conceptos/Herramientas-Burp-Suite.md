@@ -23,7 +23,7 @@ Dejar **Intercept is off** para navegar normal sin que cada request se detenga a
 | Herramienta | Uso |
 |-------------|-----|
 | **Proxy** | interceptar/modificar requests y responses |
-| **Repeater** | capturar, modificar y reenviar la misma request muchas veces |
+| **Repeater** | capturar, modificar y reenviar la misma request muchas veces — ver [[Herramientas-Burp-Suite-Repeater]] |
 | **Intruder** | rociar un endpoint con requests (fuerza bruta/fuzzing, limitado en Community) |
 | **Decoder** | codificar/decodificar datos |
 | **Comparer** | comparar dos piezas de datos (palabra o byte) |
