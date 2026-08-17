@@ -25,9 +25,10 @@ Dejar **Intercept is off** para navegar normal sin que cada request se detenga a
 | **Proxy** | interceptar/modificar requests y responses |
 | **Repeater** | capturar, modificar y reenviar la misma request muchas veces — ver [[Herramientas-Burp-Suite-Repeater]] |
 | **Intruder** | rociar un endpoint con requests (fuerza bruta/fuzzing, limitado en Community) |
-| **Decoder** | codificar/decodificar datos |
-| **Comparer** | comparar dos piezas de datos (palabra o byte) |
-| **Sequencer** | analizar aleatoriedad de tokens/cookies |
+| **Decoder** | codificar/decodificar datos, generar hashes — ver [[Herramientas-Burp-Suite-Decoder-Comparer-Sequencer]] |
+| **Comparer** | comparar dos piezas de datos (palabra o byte) — ver [[Herramientas-Burp-Suite-Decoder-Comparer-Sequencer]] |
+| **Sequencer** | analizar aleatoriedad de tokens/cookies — ver [[Herramientas-Burp-Suite-Decoder-Comparer-Sequencer]] |
+| **Organizer** | guardar y anotar requests de solo lectura para después — ver [[Herramientas-Burp-Suite-Decoder-Comparer-Sequencer]] |
 | **Extender / BApp Store** | extensiones (Java, Python-Jython, Ruby-JRuby); ej. Logger++ |
 
 ## El Dashboard (4 cuadrantes)
