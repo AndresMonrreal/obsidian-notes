@@ -45,6 +45,8 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[Herramientas-Burp-Suite-Repeater]] — interfaz, Inspector, fuzzing manual de endpoints, Union SQL Injection paso a paso
 - [[Herramientas-Burp-Suite-Intruder]] — Positions/Payloads, Sniper/Battering Ram/Pitchfork/Cluster Bomb, macros para tokens CSRF/cookies
 - [[Herramientas-Burp-Suite-Decoder-Comparer-Sequencer]] — Decoder (encode/decode/hash), Organizer, Comparer, Sequencer (entropía de tokens)
+- [[SQL-Injection-Fundamentos-y-Explotacion]] — In-Band (Error/Union-Based), Blind (Auth Bypass/Boolean/Time-Based), Out-of-Band, remediación
+- [[SQL-Injection-Practica-4-Niveles-Ejemplo]] — caso práctico: los 4 subtipos de SQLi aplicados paso a paso en un simulador
 - [[Herramientas-CyberChef]] — encoding/decoding, recetas
 - [[Herramientas-SQLMap]] — detección y explotación automática de SQL injection
 - [[Herramientas-CAPA-Malware-Analysis]] — análisis estático de malware

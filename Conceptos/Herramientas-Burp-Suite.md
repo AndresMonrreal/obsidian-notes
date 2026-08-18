@@ -31,6 +31,13 @@ Dejar **Intercept is off** para navegar normal sin que cada request se detenga a
 | **Organizer** | guardar y anotar requests de solo lectura para después — ver [[Herramientas-Burp-Suite-Decoder-Comparer-Sequencer]] |
 | **Extender / BApp Store** | extensiones (Java, Python-Jython, Ruby-JRuby); ej. Logger++ |
 
+## Extensions — administrar extensiones instaladas
+- **Extensions List**: lista las extensiones cargadas en el proyecto actual — se pueden activar/desactivar individualmente.
+- **Add**: instala una extensión nueva desde un archivo en disco (módulo propio o de fuera del BApp Store oficial).
+- **Remove**: desinstala la extensión seleccionada.
+- **Up / Down**: reordena las extensiones instaladas — el orden importa porque **determina la secuencia en la que se invocan al procesar tráfico**. Se aplican en orden **descendente**, empezando desde arriba de la lista — relevante cuando varias extensiones modifican requests y pueden llegar a interferir entre sí.
+- **Details / Output / Errors**: para la extensión seleccionada — *Details* (nombre, versión, descripción), *Output* (lo que la extensión imprime al correr), *Errors* (fallos durante su ejecución — útil para debug).
+
 ## El Dashboard (4 cuadrantes)
 - **Tasks**: tareas en background (ej. "Live Passive Crawl").
 - **Event log**: acciones de Burp (arranque del proxy, conexiones).
