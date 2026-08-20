@@ -48,6 +48,7 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[SQL-Injection-Fundamentos-y-Explotacion]] — In-Band (Error/Union-Based), Blind (Auth Bypass/Boolean/Time-Based), Out-of-Band, remediación
 - [[SQL-Injection-Practica-4-Niveles-Ejemplo]] — caso práctico: los 4 subtipos de SQLi aplicados paso a paso en un simulador
 - [[CSRF-Cross-Site-Request-Forgery]] — condiciones necesarias, mito GET/POST, formulario auto-enviado, token débil (Base64) vía imagen, checklist de testing
+- [[XSS-Cross-Site-Scripting]] — Reflected/Stored/DOM/Blind, robo de cookies, keylogger, payloads por contexto (atributo/textarea/JS string), bypass de filtros, polyglots, XSS vs CSRF
 - [[Herramientas-CyberChef]] — encoding/decoding, recetas
 - [[Herramientas-SQLMap]] — detección y explotación automática de SQL injection
 - [[Herramientas-CAPA-Malware-Analysis]] — análisis estático de malware
