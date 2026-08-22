@@ -92,7 +92,7 @@ Mapa de contenido (MOC) para navegar rápido. Organizado por tema, no por orden 
 - [[Vulnerability-Scanning-y-CVE]] — CVE, CVSS, OpenVAS
 
 ## 🧠 Principios y roles
-- [[Fundamentos-Ciberseguridad-Conceptos-Generales]] — repaso tipo examen: malware, vulnerabilidades, MFA, tipos de atacante, certificaciones, CSIRT, destrucción segura de datos
+- [[Fundamentos-Ciberseguridad-Conceptos-Generales]] — repaso tipo examen: privacidad, contraseñas/OAuth, firewalls, IDS/IPS/DLP/SIEM, malware, gestión de riesgos, ética, metodología de pentest (5 fases), certificaciones
 - [[CIA-Triad]] — Confidencialidad, Integridad, Disponibilidad
 - [[Principios-de-Seguridad-CIA-DAD]] — DAD, Parkerian Hexad, Bell-LaPadula, Zero Trust, ISO/IEC 19249
 - [[Roles-Ciberseguridad]] — Security Analyst, Engineer, Pentester + valor del training
